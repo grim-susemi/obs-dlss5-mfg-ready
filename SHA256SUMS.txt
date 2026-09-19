@@ -1,0 +1,10 @@
+# Auto-fetch NVIDIA payload - expected SHA-256 (authoritative for fetch-nvidia.ps1).
+# Format: <sha256> *<path relative to DestRoot>
+# These DLLs are not redistributable; the installer downloads and verifies each one.
+# The hash pin is the trust anchor: a wrong or changed endpoint fails closed.
+#
+# BLOCKED: obs-portable/bin/64bit/nvngx_dlssnr.dll has no confirmed official public
+# endpoint yet. fetch-nvidia.ps1 refuses it unless -AllowUnconfirmedSource is given.
+3975567b8943c53acce397f2b72380092f84f162d00b0d2c7d08a1025c563983 *obs-portable/bin/64bit/nvngx_dlss.dll
+ff6e90eb78b827927dff5b4ecc6b1c870c2e9bca29ed9f48c7d348cc9e170b82 *obs-portable/bin/64bit/OptiScaler/streamline/nvngx_dlssg.dll
+e67dee209320cdafe0e93e45675d7aa34323a53acc57a72b2e40a181581c989a *obs-portable/bin/64bit/nvngx_dlssnr.dll
