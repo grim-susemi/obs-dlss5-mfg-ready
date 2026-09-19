@@ -46,3 +46,17 @@
   * bytes: 316,448,946
   * 로컬 빌드와 일치: **True**
 * 에셋 목록: `obs-dlss5-mfg-ready-prerelease.zip` (316,448,946 B, sha256 `f4001787357f4acda20b15b38c3ec632a605066e0383ae348d4d8a1e85fc2325`)
+
+## 에셋 전체 (업로드 후 재다운로드 해시 일치 확인, 2026-09-19 11:33 KST)
+
+| 에셋 | 바이트 | SHA-256 |
+|---|---|---|
+| `obs-dlss5-mfg-ready-prerelease.zip` | 316,448,946 | `f4001787357f4acda20b15b38c3ec632a605066e0383ae348d4d8a1e85fc2325` |
+| `install-one-click.ps1` | 9,344 | `e05aa35f976c9d376f1686f263664422c716b7547bbd0cacc124b0166f8c883b` |
+| `install-one-click.cmd` | 310 | `2826b0b8c0ccb306fa813b18af3dcd811b0ec06a700d68a26d045b154fdef335` |
+| `fetch-nvidia.ps1` | 9,404 | `57b1bf3d4c2100225e8b1b0165356c6481b9990578e6dd106b3b5361b30c9fb2` |
+| `SHA256SUMS.txt` | 804 | `e7e68c26b39cfeb1094688ceb4a5832d062262e9fcb5d2ed47607d77a7f113ef` |
+| `run-obs-mfg.ps1` | 9,668 | `9df6f49eaf621ffa772cb73fb10b728451961cf6ca013aa1145f2c44aadaf8ee` |
+| `run-obs-mfg.cmd` | 184 | `59ba5e2a78b0d7321c16cf0ef779b8b000ddc7b2868b15dc5e37c03bce6180df` |
+
+모든 에셋은 업로드 후 다시 다운로드해 해시를 재계산했고, 로컬 빌드/zip 내부 사본과 일치했다.
