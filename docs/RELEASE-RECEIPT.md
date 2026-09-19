@@ -60,3 +60,10 @@
 | `run-obs-mfg.cmd` | 184 | `59ba5e2a78b0d7321c16cf0ef779b8b000ddc7b2868b15dc5e37c03bce6180df` |
 
 모든 에셋은 업로드 후 다시 다운로드해 해시를 재계산했고, 로컬 빌드/zip 내부 사본과 일치했다.
+
+## 추출 스모크 (Windows PowerShell 5.1 Expand-Archive)
+
+* `Expand-Archive` 로 zip 해제 성공, 한글 파일명 `제목_없음.json` 정상 생성
+* 해제본 `run-obs-mfg.ps1` = `9df6f49eaf621ffa772cb73fb10b728451961cf6ca013aa1145f2c44aadaf8ee` (일치)
+* 해제본 `obs-portable/config/obs-studio/basic/scenes/제목_없음.json` = `dbe2f857cf82ac293ef1805ca05e38e7a4e82fc4948a1688a17c57a9504a2dc7` (일치)
+
