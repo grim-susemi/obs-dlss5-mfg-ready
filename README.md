@@ -8,7 +8,7 @@
 
 # OBS DLSS5 MFG Ready
 
-Tested portable OBS payload with 2x to 6x frame gen. Copy it in, validate, launch.
+Tested overlay payload for installed OBS with 2x to 6x frame gen. Overlay it, validate, launch.
 
 [![Latest pre-release](https://img.shields.io/badge/Download-latest-green?style=for-the-badge&logo=github&logoColor=white)](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/latest)
 [![Rollback notes](https://img.shields.io/badge/Docs-rollback-blue?style=for-the-badge&logo=github&logoColor=white)](docs/RELEASE-NOTES-ko.md)
@@ -17,37 +17,37 @@ Tested portable OBS payload with 2x to 6x frame gen. Copy it in, validate, launc
 </div>
 
 > [!NOTE]
-> This repo is not an OptiScaler fork. OptiScaler source stays upstream, this ships a tested OBS bundle only. Binaries go out through [Releases](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases), never through git history.
+> This repo is not an OptiScaler fork. OptiScaler source stays upstream, this ships a tested overlay payload for installed OBS only. Binaries go out through [Releases](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases), never through git history.
 
 ## What this is
 
-It's a portable OBS bundle with pinned hashes. Pick your count from the menu and it sticks after save and restart.
+It's an overlay payload for installed OBS with pinned hashes. Pick your count from the menu and it sticks after save and restart.
 
 Default output is XeFG. DLSS MFG on RTX 4090 ships as an unofficial unlock candidate, for testing only.
 
 ## Install, first timer edition
 
-You'll need portable OBS and about five minutes. Nothing here touches your system, files land under your OBS folder only.
+You need installed OBS and about five minutes. This overwrites files inside your OBS install, so back up first.
 
-1. Download the zip. Grab `obs-dlss5-mfg-ready-prerelease.zip` (about 302 MB) from the [latest pre-release page](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/latest). That's the only file you need.
-2. Unzip it anywhere. Downloads is fine. You'll see a folder containing `run-obs-mfg.cmd`, `run-obs-mfg.ps1`, and an `obs-portable` folder. Keep that window open.
-3. Back up, then copy. Close OBS completely, it must not be running. Copy your own portable OBS folder next to itself and call the copy `obs-backup`, that's your undo button. Then copy the unzipped `obs-portable` folder over your real portable OBS folder and say yes to overwrite. The files land exactly here:
+1. Download the zip. Grab `obs-dlss5-mfg-ready-prerelease.zip` (about 416 MB) and `SHA256SUMS.txt` from the [latest pre-release page](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/latest). Check the zip hash against `SHA256SUMS.txt` before you unpack.
+2. Back up, then overlay. Close OBS completely, it must not be running. Copy your OBS install folder aside as your rollback copy. Then overlay the payload from the zip onto your install path. Every path below starts at that install path (for example `C:\Program Files\obs-studio`, or your custom path if you installed elsewhere):
 
 ```
-obs-portable/bin/64bit/winmm.dll
-obs-portable/bin/64bit/OptiScaler.ini
-obs-portable/bin/64bit/OptiScaler/plugins/XeFGUnlock.ini
-obs-portable/bin/64bit/OptiScaler/plugins/XeFGUnlock.asi
-obs-portable/bin/64bit/OptiScaler/streamline/ (6 DLLs, incl. nvngx_dlssg.dll 310.9.1)
-obs-portable/bin/64bit/ObsInputChain.ini
-obs-portable/config/obs-studio/plugin_config/obs-websocket/config.json
+bin/64bit/winmm.dll
+bin/64bit/OptiScaler.ini
+bin/64bit/OptiScaler/plugins/XeFGUnlock.ini
+bin/64bit/OptiScaler/plugins/XeFGUnlock.asi
+bin/64bit/OptiScaler/streamline/ (6 DLLs, incl. nvngx_dlssg.dll 310.9.1)
+bin/64bit/ObsInputChain.ini
+config/obs-studio/plugin_config/obs-websocket/config.json
 ```
 
-4. Run the safety check. Open PowerShell in your portable OBS folder and type `.\run-obs-mfg.ps1 -ValidateOnly`, then hit enter. It checks every file and starts nothing.
-5. Success looks like this. You'll see the line `Validated: 2..6x unlock cap, runtime pins, local OBS policy and preset chain; no process started.` Type `$LASTEXITCODE` and it prints `0`. Now double-click `run-obs-mfg.cmd` and OBS opens. Open the frame gen menu, pick 2x, save, restart OBS, and your pick is still there. That's it working.
-6. If it fails, one command undoes it. Close OBS, open a terminal in the folder holding both copies, and run `robocopy obs-backup obs-portable /MIR`. Type the names exactly in that order, it mirrors your backup back. Rerun the check from step 4 and it should pass again.
+3. Run the one-click check. From the package root, run `install-one-click.cmd`. It verifies hashes, fetches the NVIDIA DLLs it may not ship, checks each hash, then runs `run-obs-mfg.ps1 -ValidateOnly` and starts nothing. Success looks like this. You'll see the line `Validated: 2..6x unlock cap, runtime pins, local OBS policy and preset chain; no process started.` Type `$LASTEXITCODE` and it prints `0`. Don't launch on anything else.
+4. Launch and confirm. Open OBS, pick 2x in the frame gen menu, save, restart OBS, and your pick is still there with presented output. That's it working.
 
-Two minutes of prep saves most headaches. Turn off the NVIDIA App override for OBS, add an antivirus exception for the portable folder, pull other injectors and overlays, save then restart after each menu change, and keep this portable only.
+If it fails, copy back. With OBS closed, copy your rollback files over the install paths they came from, rehash, then rerun install-one-click until it exits 0.
+
+Two minutes of prep saves most headaches. Turn off the NVIDIA App override for OBS, add an antivirus exception for the OBS install folder, pull other injectors and overlays, save then restart after each menu change, and keep this as an overlay on installed OBS only.
 
 ## Support
 
@@ -74,9 +74,11 @@ Two minutes of prep saves most headaches. Turn off the NVIDIA App override for O
 
 ## 한국어 요약
 
-포터블 OBS에 덮어 복사하는 테스트된 번들, 해시 고정, 메뉴에서 2x부터 6x 선택. 기본 출력은 XeFG, RTX 4090 DLSS MFG는 비공식 언락 취급.
+설치된 OBS에 덮어 씌우는 테스트된 오버레이, 해시 고정, 메뉴에서 2x부터 6x 선택. 기본 출력은 XeFG, RTX 4090 DLSS MFG는 비공식 언락 취급.
 
-설치 6단계: 1) [최신 pre-release](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/latest)에서 `obs-dlss5-mfg-ready-prerelease.zip` 받기, 2) 압축 풀기 (`run-obs-mfg.cmd`와 `obs-portable` 폴더 확인), 3) OBS 완전 종료 후 내 OBS 폴더를 `obs-backup`으로 복사해 두고 받은 `obs-portable` 덮어쓰기, 4) PowerShell에서 `.\run-obs-mfg.ps1 -ValidateOnly` 실행, 5) `Validated: 2..6x ...` 메시지와 `$LASTEXITCODE` 0 확인 후 `run-obs-mfg.cmd` 더블클릭, 메뉴에서 2x 고르고 저장 재시작해도 유지되면 성공, 6) 실패하면 OBS 끄고 두 복사본이 있는 폴더에서 `robocopy obs-backup obs-portable /MIR` 한 방으로 되돌린 뒤 4단계 재확인.
+설치 4단계: 1) [최신 pre-release](https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/latest)에서 `obs-dlss5-mfg-ready-prerelease.zip`(약 416 MB)과 `SHA256SUMS.txt`를 받아 해시 대조, 2) OBS 완전 종료 후 설치 폴더를 백업해 두고 zip의 payload를 설치 경로(예: `C:\Program Files\obs-studio`, 커스텀 설치면 해당 경로)에 file-map대로 덮어 복사, 3) 패키지 루트에서 `install-one-click` 실행(해시 검증과 ValidateOnly, exit 0이어야 함), 0이 아니면 실행 금지, 4) OBS 실행, 메뉴에서 2x 고르고 저장, 재시작해도 유지되고 presented가 찍히면 성공.
+
+실패하면 OBS를 끄고 백업 파일을 제자리 경로에 복사, 재해시 후 install-one-click이 0으로 끝날 때까지 재확인.
 
 | 항목 | 상태 |
 |---|---|
