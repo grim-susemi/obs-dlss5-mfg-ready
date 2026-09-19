@@ -36,3 +36,13 @@
 ## 업로드 후 검증 (에셋 재다운로드)
 
 이 영수증의 아래 `## 업로드 검증` 절은 릴리스 업로드 후 실제 에셋을 다시 받아 계산한 해시로 채운다.
+
+## 업로드 검증 (에셋 재다운로드, 2026-09-19 11:32 KST)
+
+* 릴리스 URL: https://github.com/grim-susemi/obs-dlss5-mfg-ready/releases/tag/v0.9.0-prerelease
+* tag: `v0.9.0-prerelease` · prerelease: **True** · latest: **None**
+* 재다운로드한 `obs-dlss5-mfg-ready-prerelease.zip`:
+  * sha256: `f4001787357f4acda20b15b38c3ec632a605066e0383ae348d4d8a1e85fc2325`
+  * bytes: 316,448,946
+  * 로컬 빌드와 일치: **True**
+* 에셋 목록: `obs-dlss5-mfg-ready-prerelease.zip` (316,448,946 B, sha256 `f4001787357f4acda20b15b38c3ec632a605066e0383ae348d4d8a1e85fc2325`)
